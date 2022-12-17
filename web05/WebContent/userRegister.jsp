@@ -20,11 +20,12 @@
  
  <!--  POST 방식은 URL에 파라미터 값이 노출되지 않는다.  -->
  <!--  mothod="GET", method="POST" -->
- <form method="POST" action="procUserRegist.jsp">
+ <form method="POST"name="regForm" action="procUserRegist.jsp"
+  onsubmit="return sendDataCheckForSubmit();">
  
-	 <p>아이디 : <input type="text" name="web_id" value=""></p>
-	 <p>패스워드 : <input type="password" name="web_pwd" value="" /></p>
-	 <p>이름 : <input type="text" name="web_name" value="" /></p>
+	 <p>+ 아이디 : <input type="text" name="web_id" value=""></p>
+	 <p>+ 패스워드 : <input type="password" name="web_pwd" value="" /></p>
+	 <p>+ 이름 : <input type="text" name="web_name" value="" /></p>
 	 <p>전화번호 : 
 	 			 <select name="web_cel1">
 	 			 	<option value="010">010</option>
@@ -38,7 +39,7 @@
 	 			 - 
 	 			 <input type="text" name="web_cel3" value="" />
 	 </p>
-	 <p> 이메일 주소 : 
+	 <p>+ 이메일 주소 : 
 	 			 <input type="text" name="web_email_id" value="" /> @ 
 	 			 <select name="web_email_addr">
 	 			   <option value="naver.com">naver.com</option>
@@ -69,8 +70,62 @@
 	   <!--  <button type="button">눌러줘2</button>--> <!-- input type=button -->
 	   
 	 </p>
+	 
  </form>
  
+ <script type="text/javascript">
+ //자바스크립트
+ //console.log(document.getElementsByName("regForm"));
+// console.log(document.regForm);
+//alert(document.regForm.web_id.value);
+
+	function sendDataButton(){
+		if(sendDataCheckForsubmit()){
+			document.regform.submit();
+		}
+		//document.regForm.submit();
+	}
+//--input type="submit",button 사용 시
+	function sendDataCheckForSubmit(){
+		// 아디, 비번, 이름, 이메을은 반드시 받아야 한다
+		// 공백 제거용 메서드 : trim()
+
+		if(document.regForm.web_id.value.trim()== ""){
+			alert("아이디는 필수 값");
+			document.regForm.web_id.focus();
+			return false;
+		}
+
+		if(document.regForm.web_pwd.value.trim()== ""){
+			alert("비밀번호는 필수 값");
+			document.regForm.web_pwd.focus();
+			return false;
+		}
+		
+		// 비밀번호는 5자 이상이어야만함
+		if(document.regForm.web_pwd.value.trim().length<5){
+			alert("비밀번호는 5자 이상이어야 함");
+			document.regForm.web_pwd.focus();
+			return false;
+		}
+		
+		if(document.regForm.web_name.value.trim()== ""){
+			alert("이름은 필수 값");
+			document.regForm.web_name.focus();
+			return false;
+		}
+		
+		if(document.regForm.web_email_id.value.trim()== ""){
+			alert("이메일은 필수 값");
+			document.regForm.web_name.focus();
+			return false;
+		}
+		
+				
+		return true;
+	}
+	
+</script>
 
 </body>
 </html>

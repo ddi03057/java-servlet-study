@@ -43,6 +43,8 @@
    //-- 2. 메모리에 회원 데이터 저장 
    userController.addUser(user);
    
+   //--3. 회원가입 완료페이지(회원가입목록 보기)로 이동
+   response.sendRedirect("SuccRegist.jsp");
 %>
 	 <h1>환영합니다!!</h1>
 	 <p>아이디 : <%=user.getWebId() %></p>
